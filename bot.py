@@ -21,6 +21,8 @@ async def on_ready():
         print(f'Guild {GUILD} not found! Exiting.')
         exit(0)
 
+    print(f'Guild {GUILD} found!')
+
     load_img_db()
 
 @client.event
