@@ -4,11 +4,9 @@ import os
 import discord
 import requests
 import shutil
-from dotenv import load_dotenv
 from random import randrange
 from json import load, dumps
 
-load_dotenv(verbose=True)
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
