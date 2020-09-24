@@ -4,6 +4,7 @@ import os
 import discord
 import requests
 import shutil
+import sys
 from random import randrange
 from json import load, dumps
 
@@ -16,6 +17,7 @@ db = {}
 
 @client.event
 async def on_ready():
+    print(f'Token is {TOKEN}')
     guild = discord.utils.get(client.guilds, name=GUILD)
     if not guild:
         print(f'Guild {GUILD} not found! Exiting.')
@@ -33,6 +35,8 @@ async def on_message(message):
     command = message.content.lower()
     if command.startswith('add:'):
         key = command.split(':')[-1]
+        print(f'Adding {key}')
+        sys.stdout.flush()
         filename = message.attachments[0].filename
         url = message.attachments[0].url
 
@@ -43,6 +47,8 @@ async def on_message(message):
     if command in db:
         images = db[command]
         img_filename = images[randrange(0, len(images))]
+        print(f'Received command {command}')
+        sys.stdout.flush()
         await message.channel.send(file=discord.File('assets/'+img_filename))
 
 def download(url, filename):
